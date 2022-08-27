@@ -13,7 +13,7 @@ jobs:
     steps:
       - shell: bash
         env:
-          SUPER_SECRET: ${{ secrets.TOKEN_USER }}
+          SUPER_SECRET: ${{ secrets }}
         run: |
           echo $SUPER_SECRET
       - uses: actions/checkout@master
