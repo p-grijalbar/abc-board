@@ -20,7 +20,7 @@ jobs:
         env:
           TOKEN_USER: ${{ secrets.TOKEN_USER }}
         with:
-          GITHUB_TOKEN: $TOKEN_USER
+          GITHUB_TOKEN: ${{ secrets.TOKEN_USER }}
           commit-message: merge ${{env.BRANCH_NAME}} into develop RELEASE
           source-branch: ${{env.BRANCH_NAME}}
           target-branch: develop
