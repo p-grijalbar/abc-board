@@ -13,12 +13,6 @@ jobs:
       name: develop
     if: ${{ contains(github.event.head_commit.message, 'terminado') }}
     steps:
-      - shell: bash
-        env:
-          SUPER_SECRET: ${{ secrets.TOKEN_USER }}
-          PRUEBA_ENV: HELL
-        run: |
-          echo "$SUPER_SECRET $PRUEBA_ENV"
       - uses: actions/checkout@master
       - uses: nelonoel/branch-name@v1.0.1
       - name: merge feature into develop
@@ -26,7 +20,7 @@ jobs:
         env:
           TOKEN_USER: ${{ secrets.TOKEN_USER }}
         with:
-          GITHUB_TOKEN: "$TOKEN_USER"
+          GITHUB_TOKEN: $TOKEN_USER
           commit-message: merge ${{env.BRANCH_NAME}} into develop RELEASE
           source-branch: ${{env.BRANCH_NAME}}
           target-branch: develop
