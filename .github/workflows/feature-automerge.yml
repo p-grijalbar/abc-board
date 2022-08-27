@@ -6,31 +6,21 @@ on:
 permissions:
   contents: write
 jobs:
-  CI:
-    name: Pruebas
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout de repositorio
-        uses: actions/checkout@v2
-      - name: Merge develop -> feature
-        run: |
-          git config --global user.email "${{github.event.pusher.name}}"
-          git config --global user.name "${{github.event.pusher.email}}"
-          git fetch --unshallow
-          git pull
-          git merge --no-ff origin/develop -m "Auto-merge"
   automerge:
     name: Automerge
-    needs: CI
     runs-on: ubuntu-latest
+    environment:
+      name: develop
     if: ${{ contains(github.event.head_commit.message, 'terminado') }}
     steps:
       - uses: actions/checkout@master
       - uses: nelonoel/branch-name@v1.0.1
       - name: merge feature into develop
         uses: tukasz/direct-merge-action@master
+        env:
+          TOKEN_USER: ${{ secrets.TOKEN_USER }}
         with:
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: ${{ secrets.TOKEN_USER }}
           commit-message: merge ${{env.BRANCH_NAME}} into develop RELEASE
           source-branch: ${{env.BRANCH_NAME}}
           target-branch: develop
