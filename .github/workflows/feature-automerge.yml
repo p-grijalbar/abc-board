@@ -16,7 +16,7 @@ jobs:
       - name: merge feature into develop
         uses: tukasz/direct-merge-action@master
         with:
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: ${{ secrets.TOKEN_USER }}
           commit-message: merge ${{env.BRANCH_NAME}} into develop RELEASE
           source-branch: ${{env.BRANCH_NAME}}
           target-branch: develop
