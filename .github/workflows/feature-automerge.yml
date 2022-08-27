@@ -15,7 +15,7 @@ jobs:
         env:
           SUPER_SECRET: ${{ secrets.TOKEN_USER }}
         run: |
-          echo "$SUPER_SECRET"
+          echo $SUPER_SECRET
       - uses: actions/checkout@master
       - uses: nelonoel/branch-name@v1.0.1
       - name: merge feature into develop
