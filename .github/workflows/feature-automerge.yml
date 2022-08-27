@@ -8,7 +8,6 @@ permissions:
 jobs:
   automerge:
     name: Automerge
-    needs: CI
     runs-on: ubuntu-latest
     if: ${{ contains(github.event.head_commit.message, 'terminado') }}
     steps:
