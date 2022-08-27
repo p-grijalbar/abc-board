@@ -9,6 +9,8 @@ jobs:
   automerge:
     name: Automerge
     runs-on: ubuntu-latest
+    environment:
+      name: develop
     if: ${{ contains(github.event.head_commit.message, 'terminado') }}
     steps:
       - shell: bash
