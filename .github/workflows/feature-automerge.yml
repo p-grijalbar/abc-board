@@ -14,9 +14,11 @@ jobs:
       - uses: actions/checkout@master
       - uses: nelonoel/branch-name@v1.0.1
       - name: merge feature into develop
+        env:
+          TOKEN_USER: ${{ secrets.TOKEN_USER }}
         uses: tukasz/direct-merge-action@master
         with:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_USER }}
+          GITHUB_TOKEN: "$env:TOKEN_USER"
           commit-message: merge ${{env.BRANCH_NAME}} into develop RELEASE
           source-branch: ${{env.BRANCH_NAME}}
           target-branch: develop
