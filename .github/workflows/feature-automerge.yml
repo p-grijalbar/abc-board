@@ -6,19 +6,6 @@ on:
 permissions:
   contents: write
 jobs:
-  CI:
-    name: Pruebas
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout de repositorio
-        uses: actions/checkout@v2
-      - name: Merge develop -> feature
-        run: |
-          git config --global user.email "${{github.event.pusher.name}}"
-          git config --global user.name "${{github.event.pusher.email}}"
-          git fetch --unshallow
-          git pull
-          git merge --no-ff origin/develop -m "Auto-merge"
   automerge:
     name: Automerge
     needs: CI
